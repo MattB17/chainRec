@@ -302,10 +302,10 @@ class chainRec(object):
                 for item in item_lst:
                     users.append(user_num)
                     items.append(item)
-                    s1.append(s_vals[0, item, 0])
-                    s2.append(s_vals[0, item, 1])
-                    s3.append(s_vals[0, item, 2])
-                    s4.append(s_vals[0, item, 3])
+                    s1.append(s_vals[0][item][0])
+                    s2.append(s_vals[0][item][1])
+                    s3.append(s_vals[0][item][2])
+                    s4.append(s_vals[0][item][3])
 
                 if counter % 1000 == 0:
                     print(counter)
@@ -317,7 +317,7 @@ class chainRec(object):
                                      's2': s2,
                                      's3': s3,
                                      's4': s4})
-            s_val_df.to_csv(DATA_DIR + self.DATA_NAME + "_s_values.csv")
+            s_val_df.to_csv(DATA_DIR + self.DATA_NAME + "_s_values_bpr.csv", index=False)
 
 
 

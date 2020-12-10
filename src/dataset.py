@@ -47,8 +47,14 @@ class Dataset(object):
         sys.stdout.flush()
 
 
+    def get_split_from_disk(self):
+        print("Loading Split")
+        self.data_test = pd.read_csv(DATA_DIR + self.DATA_NAME + ".test.csv")
+        print("Split Loaded")
+
+
     def split_train_test(self, method="byUser", seed=None, max_validation_test_samples=None,
-                         train_ratio=0.7, vali_ratio=0.15, dump_splits=False):
+                         train_ratio=0.7, vali_ratio=0.15, dump_splits=True):
 
         user_item_map = self.user_item_map
         data_test = []
@@ -103,7 +109,7 @@ class Dataset(object):
             sys.stdout.flush()
             if dump_splits:
                 TEST_FILE_PATH = DATA_DIR + self.DATA_NAME + ".test.csv"
-                data_test.to_csv(TEST_FILE_PATH)
+                data_test.to_csv(TEST_FILE_PATH, index=False)
         else:
             print("Fail to split data. Please check if proper splitting parameters are specified.")
             sys.stdout.flush()
